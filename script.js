@@ -168,7 +168,7 @@ function add2d(v1, v2) {
 	return [v1[0] + v2[0], v1[1] + v2[1]]
 }
 
-function div2d(v, s) {
+function vecXscl(v, s) {
 	return [v[0] * s, v[1] * s]
 }
 
@@ -209,7 +209,7 @@ function draw() {
 	if (clicking && incanvas2d(cnv, mouse)) {
 		posi = mouse
 	}
-	posi = add2d(posi, div2d(controll(), 3))
+	posi = add2d(posi, vecXscl(controll(), 3))
 	sikaku(cnv, [0, 0], 400, 400, color(s.value, s.value, s.value))
 	maru(cnv, posi, 50, color(s1.value, s1.value, s1.value))
 }
