@@ -43,26 +43,28 @@ function color(r, g, b) {
 	return "rgb(" + r + "," + g + "," + b + ")"
 }
 
-function sikaku(cnv, y = 0, x = 0, w = 50, h = 50, rgb = color(100, 100, 100)) {
+function sikaku(cnv, xy = [0, 0], w = 50, h = 50, rgb = color(100, 100, 100)) {
 	let cnt = cnv.getContext('2d');
 	cnt.beginPath();
 	cnt.fillStyle = rgb;
-	cnt.fillRect(x, y, w, h);
+	cnt.fillRect(xy[0], xy[1], w, h);
 }
 
-function maru(cnv, x = 0, y = 0, r = 50, rgb = color(100, 100, 100)) {
+function maru(cnv, xy = [0, 0], r = 50, rgb = color(100, 100, 100)) {
 	let cnt = cnv.getContext('2d');
 	cnt.beginPath();
 	cnt.fillStyle = rgb;
-	cnt.arc(x, y, r, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
+	cnt.arc(xy[0], xy[1], r, 0 * Math.PI / 180, 360 * Math.PI / 180, false);
 	cnt.fill();
 }
 
 mouse_x = 0
 mouse_y = 0
+mouse = [0, 0]
 window.addEventListener("mousemove", function(e) {
 	mouse_x = e.clientX
 	mouse_y = e.clientY
+	mouse = [mouse_x, mouse_y]
 })
 
 clicking = false
@@ -163,11 +165,22 @@ window.addEventListener("keyup", function(e) {
 
 
 function add2d(v1, v2) {
-	let x1, y1 = v1
-	let x2, y2 = v2
-	return [x1 + x2, y1 + y2]
+	return [v1[0] + v2[0], v1[1] + v2[1]]
 }
 
+function div2d(v, s) {
+	return [v[0] * s, v[1] * s]
+}
+
+function norm2d(v) {
+	if (v[0] == 0 && v[1] == 0) return v
+	let d = Math.sqrt(v[0] ** 2 + v[1] ** 2)
+	return [v[0] / d, v[1] / d]
+}
+
+function incanvas2d(cnv, v) {
+	return v[0] < cnv.width && v[1] < cnv.height
+}
 /////////////////////////////////////////////////
 
 
@@ -180,8 +193,9 @@ s = slider()
 div()
 t1 = text("丸")
 s1 = slider()
-x = 0
-y = 0
+x = 200
+y = 200
+posi = [200, 200]
 function controll() {
 	let x_ = 0
 	let y_ = 0
@@ -192,13 +206,12 @@ function controll() {
 	return norm2d([x_, y_])
 }
 function draw() {
-	if (clicking && mouse_y < 400) {
-		x = mouse_x
-		y = mouse_y
+	if (clicking && incanvas2d(cnv, mouse)) {
+		posi = mouse
 	}
-	// posi = add2d(controll(), posi)
-	sikaku(cnv, 0, 0, 400, 400, color(s.value, s.value, s.value))
-	maru(cnv, x, y, 50, color(s1.value, s1.value, s1.value))
+	posi = add2d(posi, div2d(controll(), 3))
+	sikaku(cnv, [0, 0], 400, 400, color(s.value, s.value, s.value))
+	maru(cnv, posi, 50, color(s1.value, s1.value, s1.value))
 }
 
 setInterval(draw, 60)
