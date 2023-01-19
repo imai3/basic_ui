@@ -178,7 +178,7 @@ function norm2d(v) {
 	return [v[0] / d, v[1] / d]
 }
 
-function incanvas2d(cnv, v) {
+function incanvas(cnv, v) {
 	return v[0] < cnv.width && v[1] < cnv.height
 }
 /////////////////////////////////////////////////
@@ -206,7 +206,7 @@ function controll() {
 	return norm2d([x_, y_])
 }
 function draw() {
-	if (clicking && incanvas2d(cnv, mouse)) {
+	if (clicking && incanvas(cnv, mouse)) {
 		posi = mouse
 	}
 	posi = add2d(posi, vecXscl(controll(), 3))
@@ -219,5 +219,4 @@ setInterval(draw, 60)
 b.addEventListener("click", function() {
 	s.value = 50
 	s1.value = 50
-	draw()
 })
