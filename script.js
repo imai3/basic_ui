@@ -162,6 +162,12 @@ window.addEventListener("keyup", function(e) {
 })
 
 
+function add2d(v1, v2) {
+	let x1, y1 = v1
+	let x2, y2 = v2
+	return [x1 + x2, y1 + y2]
+}
+
 /////////////////////////////////////////////////
 
 
