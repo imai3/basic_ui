@@ -62,6 +62,16 @@ function color(r, g, b) {
 	return "rgb(" + r + "," + g + "," + b + ")"
 }
 
+
+function text_oncanvas(cnv, txt, xy = [0, 0], font = '48px serif', rgb = color(0, 0, 0)) {
+	var ctx = cnv.getContext('2d');
+	ctx.fillStyle = rgb
+	ctx.font = font;
+	ctx.fillText(txt, xy[0], xy[1]);
+}
+
+
+
 function sikaku(cnv, xy = [0, 0], w = 50, h = 50, rgb = color(100, 100, 100)) {
 	let cnt = cnv.getContext('2d');
 	cnt.beginPath();
@@ -213,7 +223,7 @@ function incanvas(cnv, v) {
 
 
 //////////////////sample program//////////////////////////////
-/*
+
 cnv = canvas()
 div()
 b = button("click")
@@ -249,6 +259,7 @@ function draw() {
 	sikaku(cnv, [0, 0], 400, 400, color(s.value, s.value, s.value))
 	maru(cnv, posi, 50, color(s1.value, s1.value, s1.value))
 	draw_image_oncanvas(cnv, chara, chara_posi)
+	text_oncanvas(cnv, "Hello World!", [100, 100])
 }
 
 setInterval(draw, 60)
@@ -257,5 +268,5 @@ b.addEventListener("click", function() {
 	s.value = 50
 	s1.value = 50
 })
-*/
+
 
