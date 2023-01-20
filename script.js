@@ -201,9 +201,19 @@ function incanvas(cnv, v) {
 	return v[0] < cnv.width && v[1] < cnv.height
 }
 
-/////////////////////////////////////////////////
 
 
+
+
+
+
+
+
+
+
+
+//////////////////sample program//////////////////////////////
+/*
 cnv = canvas()
 div()
 b = button("click")
@@ -247,5 +257,5 @@ b.addEventListener("click", function() {
 	s.value = 50
 	s1.value = 50
 })
-
+*/
 
