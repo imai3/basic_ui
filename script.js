@@ -39,6 +39,25 @@ function canvas(width = 400, height = 400) {
 	return cnv
 }
 
+function image(url, width = 100) {
+	let img = document.createElement("img");
+	img.src = url
+	img.width = width
+	document.body.appendChild(img);
+	return img
+}
+
+function load_image_oncanvas(url) {
+	let chara = new Image();
+	chara.src = url;
+	return chara
+}
+
+function draw_image_oncanvas(cnv, chara, xy = [0, 0], width = 100, height = 100) {
+	let cnt = cnv.getContext('2d');
+	cnt.drawImage(chara, xy[0], xy[1], width, height)
+}
+
 function color(r, g, b) {
 	return "rgb(" + r + "," + g + "," + b + ")"
 }
@@ -181,6 +200,7 @@ function norm2d(v) {
 function incanvas(cnv, v) {
 	return v[0] < cnv.width && v[1] < cnv.height
 }
+
 /////////////////////////////////////////////////
 
 
@@ -193,9 +213,15 @@ s = slider()
 div()
 t1 = text("丸")
 s1 = slider()
+
+
+
+
+chara = load_image_oncanvas("mushitori_long_girl.png")
 x = 200
 y = 200
 posi = [200, 200]
+chara_posi = [100, 100]
 function controll() {
 	let x_ = 0
 	let y_ = 0
@@ -209,9 +235,10 @@ function draw() {
 	if (clicking && incanvas(cnv, mouse)) {
 		posi = mouse
 	}
-	posi = add2d(posi, vecXscl(controll(), 3))
+	chara_posi = add2d(chara_posi, vecXscl(controll(), 3))
 	sikaku(cnv, [0, 0], 400, 400, color(s.value, s.value, s.value))
 	maru(cnv, posi, 50, color(s1.value, s1.value, s1.value))
+	draw_image_oncanvas(cnv, chara, chara_posi)
 }
 
 setInterval(draw, 60)
@@ -220,3 +247,5 @@ b.addEventListener("click", function() {
 	s.value = 50
 	s1.value = 50
 })
+
+
