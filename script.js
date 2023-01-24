@@ -104,6 +104,21 @@ window.addEventListener("mouseup", function() {
 	clicking = false
 })
 
+function load_sound(url) {
+	let sound = document.createElement("audio");
+	sound.src = url
+	document.body.appendChild(sound);
+	return sound
+}
+
+
+
+function play_sound() {
+	sound.currentTime = 0
+	sound.play();
+}
+
+
 key = {
 	q: false,
 	w: false,
@@ -208,7 +223,7 @@ function norm2d(v) {
 }
 
 function incanvas(cnv, v) {
-	return v[0] < cnv.width && v[1] < cnv.height
+	return 0 < v[0] && 0 < v[1] && v[0] < cnv.width && v[1] < cnv.height
 }
 
 
@@ -226,7 +241,7 @@ function incanvas(cnv, v) {
 
 cnv = canvas()
 div()
-b = button("click")
+b = button("reset")
 div()
 t = text("背景")
 s = slider()
@@ -234,14 +249,11 @@ div()
 t1 = text("丸")
 s1 = slider()
 
-
-
-
 chara = load_image_oncanvas("mushitori_long_girl.png")
-x = 200
-y = 200
+sound = load_sound("14.wav")
 posi = [200, 200]
 chara_posi = [100, 100]
+
 function controll() {
 	let x_ = 0
 	let y_ = 0
@@ -259,6 +271,7 @@ function draw() {
 	sikaku(cnv, [0, 0], 400, 400, color(s.value, s.value, s.value))
 	maru(cnv, posi, 50, color(s1.value, s1.value, s1.value))
 	draw_image_oncanvas(cnv, chara, chara_posi)
+	draw_image_oncanvas(cnv, chara, [190, 190])
 	text_oncanvas(cnv, "Hello World!", [100, 100])
 }
 
@@ -267,6 +280,7 @@ setInterval(draw, 60)
 b.addEventListener("click", function() {
 	s.value = 50
 	s1.value = 50
+	play_sound(sound)
 })
 
 
