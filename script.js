@@ -1,5 +1,12 @@
 //////////////////sample program//////////////////////////////
+function handle(event) {
+	event.preventDefault();
+}
 
+window.onload = function() {
+	document.addEventListener('touchmove', handle, { passive: false });
+	document.addEventListener('mousewheel', handle, { passive: false });
+}
 cnv = canvas()
 div()
 b = button("reset")
@@ -34,6 +41,7 @@ function draw() {
 	draw_image_oncanvas(cnv, chara, chara_posi)
 	draw_image_oncanvas(cnv, chara, [190, 190])
 	text_oncanvas(cnv, "Hello World!", [100, 100])
+	sikaku(cnv, sub2d(touch,[42,42]))
 }
 
 setInterval(draw, 60)

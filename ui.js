@@ -84,6 +84,15 @@ function maru(cnv, xy = [0, 0], r = 50, rgb = color(100, 100, 100)) {
 	cnt.fill();
 }
 
+
+touch = []
+function get_touch(e) {
+	touch = [e.touches[0].clientX, e.touches[0].clientY]
+}
+window.addEventListener("touchstart", get_touch)
+window.addEventListener("touchmove", get_touch)
+window.addEventListener("touchend", function(){touch = []})
+
 mouse_x = 0
 mouse_y = 0
 mouse = [0, 0]
@@ -210,6 +219,10 @@ function add2d(v1, v2) {
 	return [v1[0] + v2[0], v1[1] + v2[1]]
 }
 
+function sub2d(v1, v2) {
+	return [v1[0] - v2[0], v1[1] - v2[1]]
+}
+
 function vecXscl(v, s) {
 	return [v[0] * s, v[1] * s]
 }
@@ -223,3 +236,4 @@ function norm2d(v) {
 function incanvas(cnv, v) {
 	return 0 < v[0] && 0 < v[1] && v[0] < cnv.width && v[1] < cnv.height
 }
+
