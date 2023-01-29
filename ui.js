@@ -91,7 +91,7 @@ function get_touch(e) {
 }
 window.addEventListener("touchstart", get_touch)
 window.addEventListener("touchmove", get_touch)
-window.addEventListener("touchend", function(){touch = []})
+window.addEventListener("touchend", function() { touch = [] })
 
 mouse_x = 0
 mouse_y = 0
@@ -237,3 +237,12 @@ function incanvas(cnv, v) {
 	return 0 < v[0] && 0 < v[1] && v[0] < cnv.width && v[1] < cnv.height
 }
 
+function notscroll() {
+	function handle(event) {
+		event.preventDefault();
+	}
+	window.onload = function() {
+		document.addEventListener('touchmove', handle, { passive: false });
+		document.addEventListener('mousewheel', handle, { passive: false });
+	}
+}
