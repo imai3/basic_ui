@@ -1,6 +1,3 @@
-
-////functions
-
 function button(text = null) {
 	let btn = document.createElement("button");
 	btn.innerHTML = text;
