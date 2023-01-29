@@ -96,6 +96,7 @@ window.addEventListener("mousemove", function(e) {
 	mouse = [mouse_x, mouse_y]
 })
 
+
 clicking = false
 window.addEventListener("mousedown", function() {
 	clicking = true
