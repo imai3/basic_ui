@@ -237,12 +237,15 @@ function incanvas(cnv, v) {
 	return 0 < v[0] && 0 < v[1] && v[0] < cnv.width && v[1] < cnv.height
 }
 
-function notscroll() {
-	function handle(event) {
-		event.preventDefault();
-	}
-	window.onload = function() {
-		document.addEventListener('touchmove', handle, { passive: false });
-		document.addEventListener('mousewheel', handle, { passive: false });
-	}
+function handle(event) {
+	event.preventDefault();
+}
+function scroll_off() {
+	window.addEventListener('touchmove', handle, { passive: false });
+	window.addEventListener('mousewheel', handle, { passive: false });
+}
+
+function scroll_on() {
+	window.removeEventListener('touchmove', handle);
+	window.removeEventListener('mousewheel', handle);
 }

@@ -1,6 +1,6 @@
 //////////////////sample program//////////////////////////////
 
-notscroll()
+scroll_off()
 
 cnv = canvas()
 div()
@@ -36,7 +36,7 @@ function draw() {
 	draw_image_oncanvas(cnv, chara, chara_posi)
 	draw_image_oncanvas(cnv, chara, [190, 190])
 	text_oncanvas(cnv, "Hello World!", [100, 100])
-	sikaku(cnv, sub2d(touch,[42,42]))
+	sikaku(cnv, sub2d(touch, [42, 42]))
 }
 
 setInterval(draw, 60)
@@ -44,6 +44,7 @@ setInterval(draw, 60)
 b.addEventListener("click", function() {
 	s.value = 50
 	s1.value = 50
+	scroll_on()
 	play_sound(sound)
 })
 
