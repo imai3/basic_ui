@@ -1,6 +1,7 @@
 //////////////////sample program//////////////////////////////
 
 scroll_off()
+contextmenu_off()
 
 cnv = canvas()
 div()
@@ -37,6 +38,7 @@ function draw() {
 	draw_image_oncanvas(cnv, chara, [190, 190])
 	text_oncanvas(cnv, "Hello World!", [100, 100])
 	sikaku(cnv, sub2d(touch, [42, 42]))
+	console.log(fin_cnt)
 }
 
 setInterval(draw, 60)

@@ -249,3 +249,19 @@ function scroll_on() {
 	window.removeEventListener('touchmove', handle);
 	window.removeEventListener('mousewheel', handle);
 }
+
+fin_cnt = 0
+window.addEventListener("touchstart", function() {
+	fin_cnt++
+})
+window.addEventListener("touchend", function() {
+	fin_cnt--
+})
+
+function contextmenu_off() {
+	document.addEventListener('contextmenu', handle, { passive: false })
+}
+
+function contextmenu_on() {
+	document.removeEventListener('contextmenu', handle, { passive: false })
+}
